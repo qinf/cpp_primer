@@ -1,1 +1,1 @@
-C++ exercises(by using C++ 11)
+C++ exercises (by using C++ 11)
