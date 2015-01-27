@@ -3,12 +3,9 @@
 
 #include <string>
 #include <iostream>
-#include "Window_mgr.h"
 
 class Screen {
 public:
-    friend void Window_mgr::clear(ScreenIndex);
-    //friend class Window_mgr;
     using pos = std::string::size_type;
     Screen() = default;
     Screen(pos ht, pos wd): height(ht), width(wd), contents(ht*wd, ' ') { }
@@ -17,15 +14,15 @@ public:
         return contents[cursor];
     }
     inline char get(pos ht, pos wd) const;
-    Screen &move(pos r, pos c);
-    Screen &set(char);
-    Screen &set(pos, pos, char);
+    Screen move(pos r, pos c);
+    Screen set(char);
+    Screen set(pos, pos, char);
     void some_member() const;
-    Screen &display(std::ostream &os) {
+    Screen display(std::ostream &os) {
         do_display(os);
         return *this;
     }
-    const Screen &display(std::ostream &os) const {
+    const Screen display(std::ostream &os) const {
         do_display(os);
         return *this;
     }
@@ -39,16 +36,24 @@ private:
     }
 };
 
-inline Screen &Screen::set(char c) {
+inline Screen Screen::set(char c) {
     contents[cursor] = c;
     return *this;
 }
-inline Screen &Screen::set(pos row, pos col, char ch) {
+inline Screen Screen::set(pos row, pos col, char ch) {
     contents[row*width+col] = ch;
     return *this;
 }
-inline void Window_mgr::clear(ScreenIndex index) {
-    Screen &s = screens[index];
-    s.contents = std::string(s.height * s.width, ' ');
+
+char Screen::get(Screen::pos ht, Screen::pos wd) const {
+    return contents[ht*width + wd];
+}
+
+Screen Screen::move(Screen::pos r, Screen::pos c) {
+    cursor = r * width + c;
+    return *this;
+}
+void Screen::some_member() const {
+    ++access_ctr;
 }
 #endif
