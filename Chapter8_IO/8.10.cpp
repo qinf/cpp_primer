@@ -7,23 +7,20 @@
 void func(std::string file_name) {
     std::ifstream f(file_name);
     std::string line, word;
+    //std::istringstream ins;
     std::vector<std::string> svec;
     while(getline(f, line)) {
         //std::cout << line << std::endl;
-        std::istringstream ins(line);
         //ins.str(line);
-        while(ins >> word) {
-            svec.push_back(word);
+        svec.push_back(line);
+    }
+    for (auto &s : svec) {
+        std::istringstream ins(s);
+        while(ins >> word)
             std::cout << word << std::endl;
-        }
     }
 }
 
-void print(std::vector<std::string> &vec) {
-    for(auto &s : vec) {
-        std::cout << s << std::endl;
-    }
-}
 
 int main() {
     func("./a.txt");
