@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <fstream>
 #include <vector>
 using std::vector; using std::string; using std::istringstream;
 using std::cin; using std::cout; using std::endl;
@@ -11,11 +12,12 @@ struct PersonInfo {
 };
 
 void print(vector<PersonInfo> &);
-void func() {
+void func(string file_name) {
+    std::ifstream ins(file_name);
     string line, word;
     vector<PersonInfo> people;
     istringstream record;
-    while(getline(cin, line)) {
+    while(getline(ins, line)) {
         PersonInfo info;
         record.clear();
         record.str(line);
@@ -37,5 +39,5 @@ void print(vector<PersonInfo> &infos) {
 }
 
 int main() {
-    func();
+    func("./people.dat");
 }
