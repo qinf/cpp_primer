@@ -31,10 +31,13 @@ void func(string file_name) {
 
 void print(vector<PersonInfo> &infos) {
     for (auto &info : infos) {
-        cout << "name:" << info.name << " phones:";
-        for (auto &s : info.phones)
-            cout << s << " ";
-        cout << endl;
+        std::ostringstream info_os;
+        //cout << "name:" << info.name << " phones:";
+        for (auto &num : info.phones) {
+            info_os << " " << num;
+        }
+        if (!(info_os.str().empty()))
+            cout << info.name << " " << info_os.str() << endl;
     }
 }
 
