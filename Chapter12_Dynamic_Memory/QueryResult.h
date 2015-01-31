@@ -3,14 +3,18 @@
 #include <string>
 #include <map>
 #include <iostream>
-using std::string; using std::map; using std::ostream;
+#include <set>
+#include <vector>
+using std::string; using std::map; using std::ostream; using std::vector;
+using std::set; using std::endl;
 
 class QueryResult {
 public:
-    QueryResult(){}
-    QueryResult(map<string, set<int>>::iterator iter): result_iter(iter) {}
-    void print(ostream &os, map<string, set<int>>::itreator &result);
+    //QueryResult(){}
+    QueryResult(map<string, set<int>>::iterator iter, vector<string> &vec): result_iter(iter), svec(vec) {}
+    void print(ostream &os, map<string, set<int>>::iterator result);
 private:
     map<string, set<int>>::iterator result_iter;
+    vector<string> &svec;
 };
 #endif

@@ -5,7 +5,7 @@
 #include <set>
 #include <map>
 #include "QueryResult.h"
-using std::string; using std::vecotr; using std::set; using std::map;
+using std::string; using std::vector; using std::set; using std::map;
 
 class TextQuery {
 public:

@@ -20,6 +20,6 @@ TextQuery::TextQuery(string file) {
 }
 
 QueryResult TextQuery::query(string s) {
-    QueryResult resut(word_lines.find(s));
+    QueryResult result(word_lines.find(s), content);
     return result;
 }
