@@ -12,9 +12,9 @@ TextQuery::TextQuery(string file) {
         istringstream ins(line);
         ++count;
         while(ins >> word) {
-            if(word_lines.find(word) != word_lines.end()) {
+            //if(word_lines.find(word) == word_lines.end()) {
                 word_lines[word].insert(count);
-            }
+            //}
         }
     }
 }
