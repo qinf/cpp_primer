@@ -7,7 +7,7 @@ int main() {
     TextQuery text_query("a.txt");
     //text_query.print_content();
     //text_query.print_map();
-    QueryResult result = text_query.query("one");
-    print(cout, result);
+    QueryResult result = text_query.query("five");
+    //print(cout, result);
     return 0;
 }
