@@ -1,19 +1,31 @@
 #include <iostream>
 #include <string>
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::ostream;
 using std::string;
 
 class Employee {
 public:
-    Employee() {
-        ++id;
+    Employee(): id(++num) {
+        //id = ++num;
     }
-    Employee(string _name): name(_name) {
-        ++id;
+    Employee(string _name): name(_name), id(++num) {
+        //id = ++num;
+    }
+    friend ostream &print(ostream &os, Employee &e) {
+        os << e.name << " " << e.id;
+        return os;
     }
 private:
     string name;
-    static int id;
+    int id;
+    static int num;
 };
 
-int Employee::id = 0;
+int Employee::num = 0;
+
+int main() {
+    Employee e1;
+    Employee e2;
+    print(cout, e1) << endl;
+    print(cout, e2) << endl;
+}
